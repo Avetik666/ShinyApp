@@ -18,12 +18,20 @@ df <- df[order(df$Price),]
 df$Name <- factor(df$Name,levels = df$Name)
 len <- dim(df)[1]
 images <- getPalleteNames()
+im = as.data.frame(images)
+im['reg'] = str_replace_all(im$images,"-"," ")
+simpleCap <- function(x) {
+  s <- strsplit(x, " ")[[1]]
+  paste(toupper(substring(s, 1,1)), substring(s, 2),
+        sep="", collapse=" ")
+}
+im$reg <- sapply(im$reg, simpleCap)
 
 shinyApp( 
     ui = dashboardPage(
       dashboardHeader(),
       dashboardSidebar( 
-                        selectInput('image', 'Select one of the images of Martiros Saryan', choices = images),
+                        selectInput('image', 'Select one of the images of Martiros Saryan', choices = im$reg),
                         
                         actionButton(
                           inputId = "submit_loc",
@@ -47,7 +55,8 @@ shinyApp(
         handlerExpr = {
           
           output$colors <-renderPlot({
-            image <- input$image
+            image <- im[im$reg==input$image,'images']
+            # print(paste0(image,"Heno"))
             palette<- getSaryanPallete(image)
             
             ggplot(df, aes(x=df$Name,y=df$Price))+geom_bar(stat="identity", fill = palette[1:len] ) +
@@ -64,9 +73,9 @@ shinyApp(
             if (is.null(input$image))
               return(NULL)
             
-            
+            image <- im[im$reg==input$image,'images']
               return(list(
-                src = paste0("ms/",input$image,".jpg"),
+                src = paste("ms/",image,".jpg", sep = ""),
                 height= 350,
                 alt = "image"
               ))
