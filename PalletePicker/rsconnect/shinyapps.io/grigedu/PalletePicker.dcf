@@ -1,0 +1,12 @@
+name: PalletePicker
+title: PalletePicker
+username:
+account: grigedu
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 397908
+bundleId: 1527499
+url: https://grigedu.shinyapps.io/PalletePicker/
+when: 1533859204.46888
+asMultiple: FALSE
+asStatic: FALSE

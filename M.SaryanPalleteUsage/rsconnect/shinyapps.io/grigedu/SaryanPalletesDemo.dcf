@@ -1,0 +1,12 @@
+name: SaryanPalletesDemo
+title: SaryanPalletesDemo
+username:
+account: grigedu
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 397925
+bundleId: 1527460
+url: https://grigedu.shinyapps.io/SaryanPalletesDemo/
+when: 1533857147.34553
+asMultiple: FALSE
+asStatic: FALSE
